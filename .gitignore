@@ -6,3 +6,4 @@ __pycache__/
 site_data.json
 summary.json
 site/
+sweep.json
