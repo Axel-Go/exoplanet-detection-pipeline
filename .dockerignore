@@ -1,0 +1,6 @@
+.venv/
+.git/
+results/
+__pycache__/
+*.png
+scratch.py
