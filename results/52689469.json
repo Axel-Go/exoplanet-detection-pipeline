@@ -1,0 +1,16 @@
+{
+  "tic_id": 52689469,
+  "group": "known",
+  "status": "ok",
+  "reason": null,
+  "sector": 33,
+  "n_points": 17458,
+  "span_days": 25.839066920755613,
+  "period_days": 3.13923196159808,
+  "depth": 0.005184029132466178,
+  "duration_days": 0.16,
+  "transit_time": 2202.0477919215136,
+  "sde": 11.122651481165132,
+  "radius_ratio": 0.07200020230850868,
+  "verdict": "candidate"
+}

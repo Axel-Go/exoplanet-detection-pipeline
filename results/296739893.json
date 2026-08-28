@@ -1,0 +1,16 @@
+{
+  "tic_id": 296739893,
+  "group": "known",
+  "status": "ok",
+  "reason": null,
+  "sector": 8,
+  "n_points": 12993,
+  "span_days": 24.107068152746933,
+  "period_days": 5.120081004050203,
+  "depth": 0.0018449233232251169,
+  "duration_days": 0.12,
+  "transit_time": 1517.9578454844595,
+  "sde": 3.694982098115862,
+  "radius_ratio": 0.04295257062417937,
+  "verdict": "none"
+}

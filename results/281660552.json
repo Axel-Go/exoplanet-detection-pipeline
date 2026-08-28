@@ -1,0 +1,16 @@
+{
+  "tic_id": 281660552,
+  "group": "known",
+  "status": "ok",
+  "reason": null,
+  "sector": 45,
+  "n_points": 15820,
+  "span_days": 23.852299652729016,
+  "period_days": 0.6410820541027051,
+  "depth": 0.00048797147315714,
+  "duration_days": 0.16,
+  "transit_time": 2526.9198668369354,
+  "sde": 6.484173356829783,
+  "radius_ratio": 0.022090076350188108,
+  "verdict": "none"
+}

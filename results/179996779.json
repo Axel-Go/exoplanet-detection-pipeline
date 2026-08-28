@@ -1,0 +1,16 @@
+{
+  "tic_id": 179996779,
+  "group": "control",
+  "status": "ok",
+  "reason": null,
+  "sector": 92,
+  "n_points": 15017,
+  "span_days": 25.12386848505912,
+  "period_days": 1.9364718235911798,
+  "depth": 0.02577648265588721,
+  "duration_days": 0.06,
+  "transit_time": 3804.2067865055546,
+  "sde": 14.507718520026712,
+  "radius_ratio": 0.16055056105752857,
+  "verdict": "candidate"
+}

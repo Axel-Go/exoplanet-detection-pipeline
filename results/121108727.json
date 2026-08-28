@@ -1,0 +1,16 @@
+{
+  "tic_id": 121108727,
+  "group": "known",
+  "status": "ok",
+  "reason": null,
+  "sector": 40,
+  "n_points": 19610,
+  "span_days": 28.20024209906569,
+  "period_days": 9.163958197909896,
+  "depth": 0.002242294132845218,
+  "duration_days": 0.16,
+  "transit_time": 2391.6120907802006,
+  "sde": 5.099060658890577,
+  "radius_ratio": 0.04735286826418457,
+  "verdict": "none"
+}

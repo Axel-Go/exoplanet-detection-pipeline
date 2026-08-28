@@ -1,0 +1,16 @@
+{
+  "tic_id": 12822523,
+  "group": "control",
+  "status": "ok",
+  "reason": null,
+  "sector": 92,
+  "n_points": 16355,
+  "span_days": 25.226032737473815,
+  "period_days": 2.6209810490524528,
+  "depth": 0.0006485585201940317,
+  "duration_days": 0.16,
+  "transit_time": 3804.3237764313867,
+  "sde": 4.466680491320358,
+  "radius_ratio": 0.025466812132538923,
+  "verdict": "none"
+}

@@ -1,0 +1,16 @@
+{
+  "tic_id": 200807744,
+  "group": "control",
+  "status": "ok",
+  "reason": null,
+  "sector": 3,
+  "n_points": 12971,
+  "span_days": 20.277985995840936,
+  "period_days": 4.723436171808591,
+  "depth": 0.0015330161566671696,
+  "duration_days": 0.16,
+  "transit_time": 1387.298330420239,
+  "sde": 3.2366383972652693,
+  "radius_ratio": 0.039153750224814605,
+  "verdict": "none"
+}

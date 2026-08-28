@@ -1,0 +1,15 @@
+{
+  "sde_threshold": 7.0,
+  "max_radius_ratio": 0.15,
+  "known_attempted": 100,
+  "known_skipped": 6,
+  "known_analysed": 94,
+  "correct_period": 42,
+  "harmonic": 1,
+  "wrong_period": 2,
+  "not_detected": 49,
+  "recall": 0.4574468085106383,
+  "controls_analysed": 100,
+  "false_alarms": 9,
+  "false_alarm_rate": 0.09
+}

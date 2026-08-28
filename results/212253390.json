@@ -1,0 +1,16 @@
+{
+  "tic_id": 212253390,
+  "group": "known",
+  "status": "ok",
+  "reason": null,
+  "sector": 27,
+  "n_points": 16780,
+  "span_days": 24.362795653272542,
+  "period_days": 3.0912545627281367,
+  "depth": 0.0002717912127039871,
+  "duration_days": 0.08,
+  "transit_time": 2038.108140162951,
+  "sde": 8.437057207792437,
+  "radius_ratio": 0.016486091492648798,
+  "verdict": "candidate"
+}

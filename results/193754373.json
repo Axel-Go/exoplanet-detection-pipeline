@@ -1,0 +1,16 @@
+{
+  "tic_id": 193754373,
+  "group": "known",
+  "status": "ok",
+  "reason": null,
+  "sector": 41,
+  "n_points": 18322,
+  "span_days": 26.589219721128302,
+  "period_days": 3.953897694884745,
+  "depth": 0.006266203112599093,
+  "duration_days": 0.16,
+  "transit_time": 2422.6480847384164,
+  "sde": 11.564677004795183,
+  "radius_ratio": 0.07915935265399214,
+  "verdict": "candidate"
+}

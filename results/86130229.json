@@ -1,0 +1,16 @@
+{
+  "tic_id": 86130229,
+  "group": "known",
+  "status": "ok",
+  "reason": null,
+  "sector": 44,
+  "n_points": 15280,
+  "span_days": 24.078692796950236,
+  "period_days": 5.093479673983699,
+  "depth": 0.0006231578150160684,
+  "duration_days": 0.12,
+  "transit_time": 2504.74065198604,
+  "sde": 4.193000512806533,
+  "radius_ratio": 0.02496312911107236,
+  "verdict": "none"
+}

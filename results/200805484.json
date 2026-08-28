@@ -1,0 +1,16 @@
+{
+  "tic_id": 200805484,
+  "group": "known",
+  "status": "ok",
+  "reason": null,
+  "sector": 97,
+  "n_points": 30291,
+  "span_days": 52.35154815062651,
+  "period_days": 2.967748387419371,
+  "depth": 0.009995291178678046,
+  "duration_days": 0.06,
+  "transit_time": 3936.761184083998,
+  "sde": 20.601464028885097,
+  "radius_ratio": 0.09997645312111271,
+  "verdict": "candidate"
+}

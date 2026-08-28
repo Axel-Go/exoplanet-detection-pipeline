@@ -1,0 +1,16 @@
+{
+  "tic_id": 31374837,
+  "group": "known",
+  "status": "ok",
+  "reason": null,
+  "sector": 5,
+  "n_points": 17130,
+  "span_days": 25.57261876368102,
+  "period_days": 6.2325866293314665,
+  "depth": 0.0009614767479501804,
+  "duration_days": 0.12,
+  "transit_time": 1440.6311893903687,
+  "sde": 4.066533902844657,
+  "radius_ratio": 0.031007688529624072,
+  "verdict": "none"
+}

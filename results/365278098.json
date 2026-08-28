@@ -1,0 +1,16 @@
+{
+  "tic_id": 365278098,
+  "group": "control",
+  "status": "ok",
+  "reason": null,
+  "sector": 14,
+  "n_points": 18421,
+  "span_days": 26.850504629292573,
+  "period_days": 1.2624131206560327,
+  "depth": 0.0006065695613506677,
+  "duration_days": 0.16,
+  "transit_time": 1683.4353490300962,
+  "sde": 13.068078933887334,
+  "radius_ratio": 0.024628632957406867,
+  "verdict": "candidate"
+}
