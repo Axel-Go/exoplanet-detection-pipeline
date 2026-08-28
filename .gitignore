@@ -3,3 +3,6 @@ __pycache__/
 *.pyc
 *.png
 .DS_Store
+site_data.json
+summary.json
+site/
