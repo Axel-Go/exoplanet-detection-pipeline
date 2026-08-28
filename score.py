@@ -84,7 +84,7 @@ for r in records:
                          if t is not None else None)
 
 n, m_ = len(k_ok), len(c_ok)
-found = [r for r in k_ok if r["outcome"].startswith(("found", "harmonic"))]
+found = [r for r in k_ok if r["outcome"] == "found"]
 fa = [r for r in c_ok if r["outcome"] == "false_alarm"]
 
 print("KNOWN PLANETS")
