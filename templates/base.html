@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Exoplanet Detection Pipeline{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ root }}/static/style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body class="{% block bodyclass %}{% endblock %}">
+
+<header class="site-header">
+  <a class="brand" href="{{ root }}/index.html">
+    <span class="brand-mark"></span>
+    <span>exoplanet<span class="brand-dim">/pipeline</span></span>
+  </a>
+  <nav class="site-nav">
+    <a href="{{ root }}/index.html" {% if page == 'index.html' %}class="here"{% endif %}>Overview</a>
+    <a href="{{ root }}/results.html" {% if page == 'results.html' %}class="here"{% endif %}>All stars</a>
+    <a href="https://github.com/Axel-Go/exoplanet-detection-pipeline">Source</a>
+  </nav>
+</header>
+
+{% block content %}{% endblock %}
+
+<footer class="site-footer">
+  <p>Light curves from NASA TESS via MAST · ground truth from the NASA Exoplanet Archive</p>
+  <p>Built by Axel Go</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/4.5.0/anime.umd.min.js"></script>
+<script src="{{ root }}/static/app.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

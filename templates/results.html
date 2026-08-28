@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}All stars — Exoplanet Detection Pipeline{% endblock %}
+
+{% block content %}
+<div class="wrap">
+
+<section class="page-head">
+  <h1>All {{ stats.n_total }} stars</h1>
+  <p class="lede">
+    Every target the pipeline searched, with the verdict it reached and the truth it
+    was graded against. Click a column heading to sort.
+  </p>
+</section>
+
+<div class="table-wrap">
+  <table id="results-table">
+    <thead>
+      <tr>
+        <th data-type="text">TIC ID</th>
+        <th data-type="text">Group</th>
+        <th data-type="text">Outcome</th>
+        <th data-type="number">SDE</th>
+        <th data-type="number">Period found (d)</th>
+        <th data-type="number">True period (d)</th>
+        <th data-type="number">Depth</th>
+        <th data-type="number">Rp/Rs</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr>
+        <td class="mono">{{ row.tic_id }}</td>
+        <td>{{ row.group }}</td>
+        <td><span class="tag tag-{{ row.cls }}">{{ row.label }}</span></td>
+        <td class="mono num">{{ row.sde }}</td>
+        <td class="mono num">{{ row.period }}</td>
+        <td class="mono num">{{ row.true_period }}</td>
+        <td class="mono num">{{ row.depth }}</td>
+        <td class="mono num">{{ row.ratio }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+</div>
+{% endblock %}

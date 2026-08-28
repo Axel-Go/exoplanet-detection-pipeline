@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Exoplanet Detection Pipeline{% endblock %}
+{% block bodyclass %}landing{% endblock %}
+
+{% block content %}
+
+<section class="hero-full">
+  <div class="hero-copy">
+    <p class="eyebrow">NASA TESS · {{ stats.n_total }} stars searched blind</p>
+    <h1>Finding planets<br>in starlight,<br>then grading<br>my own work.</h1>
+    <p class="lede">
+      A pipeline that searches TESS light curves for the shadow of a transiting
+      planet — and, unusually, measures how often it is actually right.
+    </p>
+
+    <div class="hero-stats">
+      <div>
+        <span class="hs-value" data-count="{{ stats.recall_pct }}">0.0</span><span class="hs-unit">%</span>
+        <span class="hs-label">recall · {{ stats.recovered }} of {{ stats.known_with_data }} real planets found</span>
+      </div>
+      <div>
+        <span class="hs-value alt" data-count="{{ stats.far_pct }}">0.0</span><span class="hs-unit alt">%</span>
+        <span class="hs-label">false alarms · {{ stats.false_alarms }} of {{ stats.n_control }} empty stars flagged</span>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a class="btn" href="{{ root }}/results.html">All {{ stats.n_total }} stars</a>
+      <a class="btn ghost" href="#how">How it works ↓</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <canvas id="sky"></canvas>
+    <div id="sky-tip" class="sky-tip" hidden>
+      <p class="st-id"></p>
+      <p class="st-outcome"></p>
+      <p class="st-meta"></p>
+    </div>
+    <p class="sky-hint">drag to rotate · click a star</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+<section class="steps" id="how">
+  <h2>What it does</h2>
+  <ol class="step-list">
+    <li>
+      <h3>Download</h3>
+      <p>Pulls a TESS light curve for each target from the MAST archive — around 18,000 brightness measurements over 27 days.</p>
+    </li>
+    <li>
+      <h3>Search</h3>
+      <p>Runs a box-least-squares periodogram across 20,000 trial periods from 0.5 to 10 days, hunting for a dip that repeats.</p>
+    </li>
+    <li>
+      <h3>Decide</h3>
+      <p>Accepts the strongest peak only if it clears a detection threshold and the implied planet isn't too big to be a planet.</p>
+    </li>
+    <li>
+      <h3>Grade</h3>
+      <p>Checks every verdict against the archive: a match, a harmonic, a wrong period, a miss, or a false alarm.</p>
+    </li>
+  </ol>
+</section>
+
+<section class="claim">
+  <p>
+    Plenty of tutorials find one planet in a light curve already known to contain
+    one. This does the harder version — {{ stats.n_known }} stars with a confirmed
+    transiting planet and {{ stats.n_control }} nearby stars with none, searched
+    identically, with the answers withheld until scoring.
+  </p>
+  <p class="aside">
+    Both numbers matter. A detector that flags everything has perfect recall and is
+    useless; one that flags nothing never raises a false alarm and is equally useless.
+    The interesting part is where the trade sits, and what the failures have in common.
+  </p>
+</section>
+
+{% if figures %}
+<section class="figures">
+    
+  {% for fig in figures %}
+  <figure class="fig">
+    <img src="{{ root }}/figures/{{ fig.file }}" alt="">
+    <figcaption>{{ fig.caption }}</figcaption>
+  </figure>
+  {% endfor %}
+</section>
+{% endif %}
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ root }}/static/sky.js"></script>
+{% endblock %}
