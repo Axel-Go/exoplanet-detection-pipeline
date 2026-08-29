@@ -1,15 +1,24 @@
+// Sortable results table.
+//
+// The clickable part is a <button> inside each <th>, so sorting works by
+// keyboard as well as mouse, and aria-sort tells a screen reader which
+// column is sorted and which way.
+
 document.addEventListener("DOMContentLoaded", function () {
   const table = document.getElementById("results-table");
   if (!table) return;
 
-  const headers = table.querySelectorAll("thead th");
+  const headers = Array.from(table.querySelectorAll("thead th"));
+  const body = table.querySelector("tbody");
 
   headers.forEach(function (header, index) {
-    header.addEventListener("click", function () {
-      const body = table.querySelector("tbody");
-      const rows = Array.from(body.querySelectorAll("tr"));
+    const button = header.querySelector("button");
+    if (!button) return;
+
+    button.addEventListener("click", function () {
       const numeric = header.dataset.type === "number";
-      const ascending = !header.classList.contains("asc");
+      const ascending = header.getAttribute("aria-sort") !== "ascending";
+      const rows = Array.from(body.querySelectorAll("tr"));
 
       rows.sort(function (a, b) {
         const x = a.children[index].textContent.trim();
@@ -18,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (numeric) {
           const nx = parseFloat(x);
           const ny = parseFloat(y);
+          // rows with no value sort to the bottom either way
           if (isNaN(nx) && isNaN(ny)) return 0;
           if (isNaN(nx)) return 1;
           if (isNaN(ny)) return -1;
@@ -28,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       rows.forEach(function (row) { body.appendChild(row); });
 
-      headers.forEach(function (h) { h.classList.remove("asc", "desc"); });
-      header.classList.add(ascending ? "asc" : "desc");
+      headers.forEach(function (h) { h.setAttribute("aria-sort", "none"); });
+      header.setAttribute("aria-sort", ascending ? "ascending" : "descending");
     });
   });
 });

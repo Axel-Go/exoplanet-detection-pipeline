@@ -19,6 +19,8 @@
 </head>
 <body class="{% block bodyclass %}{% endblock %}">
 
+<a class="skip" href="#main">Skip to content</a>
+
 <header class="site-header">
   <a class="brand" href="{{ root }}/index.html">
     <span class="brand-mark"></span>
@@ -31,7 +33,9 @@
   </nav>
 </header>
 
+<main id="main">
 {% block content %}{% endblock %}
+</main>
 
 <footer class="site-footer">
   <p>Light curves from NASA TESS via MAST · ground truth from the NASA Exoplanet Archive</p>
@@ -40,6 +44,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/4.5.0/anime.umd.min.js"></script>
 <script src="{{ root }}/static/app.js"></script>
+<script src="{{ root }}/static/slider.js" type="module"></script>
+<script src="{{ root }}/static/motion.js"></script>
 {% block scripts %}{% endblock %}
 </body>
 </html>

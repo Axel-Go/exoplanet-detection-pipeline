@@ -7,7 +7,7 @@
 <section class="hero-full">
   <div class="hero-copy">
     <p class="eyebrow">NASA TESS · {{ stats.n_total }} stars searched blind</p>
-    <h1>Finding planets<br>in starlight,<br>then grading<br>my own work.</h1>
+    <h1><span class="line">Finding planets</span><span class="line">in starlight,</span><span class="line">then grading</span><span class="line">my own work.</span></h1>
     <p class="lede">
       A pipeline that searches TESS light curves for the shadow of a transiting
       planet — and, unusually, measures how often it is actually right.
@@ -16,12 +16,50 @@
     <div class="hero-stats">
       <div>
         <span class="hs-value" data-count="{{ stats.recall_pct }}">0.0</span><span class="hs-unit">%</span>
-        <span class="hs-label">recall · {{ stats.recovered }} of {{ stats.known_with_data }} real planets found</span>
+        <span class="hs-label">recall · <span id="read-recall">{{ stats.recovered }} of {{ stats.known_with_data }}</span> real planets found</span>
       </div>
       <div>
         <span class="hs-value alt" data-count="{{ stats.far_pct }}">0.0</span><span class="hs-unit alt">%</span>
-        <span class="hs-label">false alarms · {{ stats.false_alarms }} of {{ stats.n_control }} empty stars flagged</span>
+        <span class="hs-label">false alarms · <span id="read-far">{{ stats.false_alarms }} of {{ stats.n_control }}</span> empty stars flagged</span>
       </div>
+    </div>
+
+        <div class="control" id="cap-control">
+      <div class="control-head">
+        <span class="control-label">size cap</span>
+        <span class="control-value mono" id="cap-value">{{ "%.2f"|format(default_cap) }}</span>
+        <span class="control-note">largest planet-to-star radius ratio the detector will accept</span>
+      </div>
+
+      <svg class="curve" viewBox="0 0 {{ curve.w }} {{ curve.h }}" preserveAspectRatio="none" aria-hidden="true">
+        {% for g in curve.gridlines %}
+        <line class="grid" x1="0" x2="{{ curve.w }}" y1="{{ g.y }}" y2="{{ g.y }}"></line>
+        {% endfor %}
+        <polyline class="line-far" points="{{ curve.far }}"></polyline>
+        <polyline class="line-recall" points="{{ curve.recall }}"></polyline>
+        <line id="curve-marker" class="marker" y1="{{ curve.top }}" y2="{{ curve.bottom }}" x1="0" x2="0"></line>
+        <circle id="dot-recall" class="dot" r="4" cx="0" cy="0"></circle>
+        <circle id="dot-far" class="dot dim" r="4" cx="0" cy="0"></circle>
+      </svg>
+
+      <div class="curve-key">
+        <span><i class="swatch"></i>recall</span>
+        <span><i class="swatch dim"></i>false alarms</span>
+      </div>
+
+      <div class="track" id="cap-track">
+        <div class="handle" id="cap-handle"></div>
+      </div>
+
+      <p class="track-scale" aria-hidden="true">
+        <span>0.04 · stricter</span>
+        <span>looser · 0.40</span>
+      </p>
+
+      <p class="control-read" id="cap-read">
+        {{ stats.recovered }} of {{ stats.known_with_data }} planets recovered ·
+        {{ stats.false_alarms }} of {{ stats.n_control }} controls flagged
+      </p>
     </div>
 
     <div class="hero-actions">
@@ -31,13 +69,29 @@
   </div>
 
   <div class="hero-visual">
-    <canvas id="sky"></canvas>
+    <canvas id="sky" aria-label="A rotating globe of the {{ stats.n_total }} stars searched, positioned by their real coordinates on the sky. Brightness shows what the pipeline concluded about each one; the list below gives the same information as text.">
+      <p>
+        A 3D map of the {{ stats.n_total }} stars this pipeline searched, plotted at
+        their real sky positions. The counts below say what it concluded about each.
+      </p>
+    </canvas>
     <div id="sky-tip" class="sky-tip" hidden>
       <p class="st-id"></p>
       <p class="st-outcome"></p>
       <p class="st-meta"></p>
+      <a class="st-link" href="#">open this star →</a>
     </div>
     <p class="sky-hint">drag to rotate · click a star</p>
+
+    <ul class="sky-legend" id="sky-legend">
+      {% for row in legend %}
+      <li data-outcomes="{{ row.match }}">
+        <i class="dot-key" style="background: {{ row.swatch }}"></i>
+        <span class="lg-name">{{ row.name }}</span>
+        <span class="lg-count">{{ row.count }}</span>
+      </li>
+      {% endfor %}
+    </ul>
   </div>
 </section>
 
@@ -77,6 +131,20 @@
     useless; one that flags nothing never raises a false alarm and is equally useless.
     The interesting part is where the trade sits, and what the failures have in common.
   </p>
+</section>
+
+<section class="featured">
+  <h2>Three worth looking at</h2>
+  <p class="hint">Every one of the {{ stats.n_total }} stars has its own page with the plots the search produced.</p>
+  <div class="feature-grid">
+    {% for f in featured %}
+    <a class="feature-card" href="{{ root }}/stars/{{ f.tic_id }}.html">
+      <span class="fc-tic">TIC {{ f.tic_id }}</span>
+      <span class="tag tag-{{ f.cls }}">{{ f.label }}</span>
+      <span class="fc-why">{{ f.blurb }}</span>
+    </a>
+    {% endfor %}
+  </div>
 </section>
 
 {% if figures %}

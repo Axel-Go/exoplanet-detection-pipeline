@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}TIC {{ row.tic_id }} — Exoplanet Detection Pipeline{% endblock %}
+
+{% block content %}
+<div class="wrap">
+
+<section class="page-head star-head">
+  <p class="eyebrow"><a href="{{ root }}/results.html">← all stars</a></p>
+  <h1 class="mono">TIC {{ row.tic_id }}</h1>
+  <p class="star-tags">
+    <span class="tag tag-{{ row.cls }}">{{ row.label }}</span>
+    <span class="tag tag-muted">{{ row.group }}</span>
+    {% if row.planet %}<span class="tag tag-muted">{{ row.planet }}</span>{% endif %}
+  </p>
+  <p class="lede">{{ row.why }}</p>
+</section>
+
+<section class="facts">
+  <div class="fact-group">
+    <h2>What the pipeline measured</h2>
+    <dl>
+      <div><dt>Period found</dt><dd class="mono">{{ row.period }} d</dd></div>
+      <div><dt>Transit depth</dt><dd class="mono">{{ row.depth }}</dd></div>
+      <div><dt>Duration</dt><dd class="mono">{{ row.duration_hours }} h</dd></div>
+      <div><dt>Implied Rp/Rs</dt><dd class="mono">{{ row.ratio }}</dd></div>
+      <div><dt>SDE</dt><dd class="mono">{{ row.sde }}</dd></div>
+      <div><dt>Verdict</dt><dd class="mono">{{ row.verdict or "—" }}</dd></div>
+    </dl>
+  </div>
+
+  <div class="fact-group">
+    <h2>{% if row.planet %}What the archive says{% else %}Ground truth{% endif %}</h2>
+    <dl>
+      {% if row.planet %}
+      <div><dt>Planet</dt><dd class="mono">{{ row.planet }}</dd></div>
+      <div><dt>True period</dt><dd class="mono">{{ row.true_period }} d</dd></div>
+      <div><dt>True duration</dt><dd class="mono">{{ row.true_duration }} h</dd></div>
+      <div><dt>Radius</dt><dd class="mono">{{ row.radius_earth }} R⊕</dd></div>
+      {% else %}
+      <div><dt>Known planets</dt><dd class="mono">none</dd></div>
+      <div><dt>Role</dt><dd>control star — any detection here is a false alarm</dd></div>
+      {% endif %}
+    </dl>
+  </div>
+
+  <div class="fact-group">
+    <h2>The observation</h2>
+    <dl>
+      <div><dt>TESS sector</dt><dd class="mono">{{ row.sector or "—" }}</dd></div>
+      <div><dt>Measurements</dt><dd class="mono">{{ row.n_points or "—" }}</dd></div>
+      <div><dt>Baseline</dt><dd class="mono">{{ row.span }} d</dd></div>
+      <div><dt>Size cap in force</dt><dd class="mono">{{ "%.2f"|format(cap) }}</dd></div>
+    </dl>
+  </div>
+</section>
+
+{% if row.plots %}
+<section class="plots">
+  <h2>What the search saw</h2>
+  {% for plot in row.plots %}
+  <figure class="plot">
+    <img src="{{ root }}/plots/{{ plot.file }}" alt="{{ plot.title }} for TIC {{ row.tic_id }}" loading="lazy">
+    <figcaption>
+      <strong>{{ plot.title }}</strong>
+      <span>{{ plot.note }}</span>
+    </figcaption>
+  </figure>
+  {% endfor %}
+</section>
+{% else %}
+<section class="plots">
+  <p class="hint">No plots for this target — the search never got far enough to draw any.</p>
+</section>
+{% endif %}
+
+</div>
+{% endblock %}
